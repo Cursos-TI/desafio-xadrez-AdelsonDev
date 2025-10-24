@@ -3,11 +3,13 @@
 
 
 int main() {
-      /* Peças: Torre, Bispo e Rainha
+      /* Peças: Torre, Bispo, Rainha 
        Estruturas: for, while e do-while
+       peça: cavalo com loops aninhados
     */
     int torre = 1;
     int moveTorre = 5;
+
     // mover a torre 5 casas para a direita com for
     printf ("Movimento da Torre:\n");
 
@@ -42,6 +44,36 @@ int main() {
         printf ("Esquerda (casa %d)\n", rainha); // Direção da rainha
         rainha++;
     }while (rainha <= moveRainha);
+
+    printf ("\n");
+
+    int cavalo;
+    int moveCavalo = 1;
+    char opcao;
+            // opção do movimento
+    printf ("Digite a direção do cavalo: (E: esquerda / D: direita): \n");
+    scanf(" %c", &opcao);
+        // loop aninhado de while com for
+
+        while (moveCavalo--)
+        {
+            for (cavalo = 0; cavalo < 2; cavalo++)
+            {
+                printf ("Cima\n");
+            }
+
+            if (opcao == 'E' || opcao == 'e')
+            {
+                printf ("Esquerda\n");
+            }else if(opcao == 'D' || opcao == 'd')
+            {
+                printf ("Direita\n");
+            } else { 
+                printf ("Opção inválida\n");
+            }
+              
+        }
+        
 
     printf ("Fim dos movimentos!");
   
