@@ -1,97 +1,107 @@
 #include <stdio.h>
-
-
-
-int main() {
-      /* Peças: Torre, Bispo, Rainha 
-       Estruturas: for, while e do-while
-       peça: cavalo com loops aninhados
-    */
-    int torre = 1;
-    int moveTorre = 5;
-
-    // mover a torre 5 casas para a direita com for
-    printf ("Movimento da Torre:\n");
-
-    for (torre <= 1; torre <= moveTorre; torre++){
-    
-        printf ("Direita (casa %d)\n", torre);
-    }
-    
-         printf ("\n"); // Espaço entre os movimentos das peças
-
-     // estrutura while
-
-    int bispo = 1;
-    int moveBispo = 5;
-
-     printf ("Movimento do Bispo:\n");
-
-    while(bispo <= moveBispo){
-        printf ("Cima, direita (casa %d)\n", bispo); // Direção do bispo
-        bispo++;
+/*
+movimneto de cima para baixo conforme o vídeo
+ apresentado pelo professor Sérgio Cardoso
+*/ 
+// Função Recursiva - Torre
+void moverTorre (int casa){
+    if (casa > 0)
+    {
+        // direção da torre
+       printf ("Direita (casa %d)\n", casa);
+       moverTorre(casa - 1);
     }
 
-             printf ("\n"); 
-    // estrutura do-while 
-
-    int rainha = 1;
-    int moveRainha = 8;
-
-    printf ("Movimento da rainha:\n");
-
-    do {
-        printf ("Esquerda (casa %d)\n", rainha); // Direção da rainha
-        rainha++;
-    }while (rainha <= moveRainha);
-
-    printf ("\n");
-
-    int cavalo;
-    int moveCavalo = 1;
-    char opcao;
-            // opção do movimento
-    printf ("Digite a direção do cavalo: (E: esquerda / D: direita): \n");
-    scanf(" %c", &opcao);
-        // loop aninhado de while com for
-
-        while (moveCavalo--)
-        {
-            for (cavalo = 0; cavalo < 2; cavalo++)
-            {
-                printf ("Cima\n");
-            }
-
-            if (opcao == 'E' || opcao == 'e')
-            {
-                printf ("Esquerda\n");
-            }else if(opcao == 'D' || opcao == 'd')
-            {
-                printf ("Direita\n");
-            } else { 
-                printf ("Opção inválida\n");
-            }
-              
-        }
-        
-
-    printf ("Fim dos movimentos!");
-  
-    
-    return 0;
-
+   
 }
 
-    // Nível Aventureiro - Movimentação do Cavalo
-    // Sugestão: Utilize loops aninhados para simular a movimentação do Cavalo em L.
-    // Um loop pode representar a movimentação horizontal e outro vertical.
+    // Função Recursiva - Bispo
+void moverBispo (int vertical){
 
-    // Nível Mestre - Funções Recursivas e Loops Aninhados
-    // Sugestão: Substitua as movimentações das peças por funções recursivas.
-    // Exemplo: Crie uma função recursiva para o movimento do Bispo.
+    if (vertical > 0)
+    {
+            // loop interno para o deslocamento horizontal
+        for (int horizontal = 1; horizontal <= 1; horizontal++)
+        {
+             // direção do Bispo
+       printf ("Cima, Direita (casa %d)\n", vertical);
+       
+        }
+        moverBispo(vertical - 1);
+    }
+}
 
-    // Sugestão: Implemente a movimentação do Cavalo utilizando loops com variáveis múltiplas e condições avançadas.
-    // Inclua o uso de continue e break dentro dos loops.
+    // Função Recursiva - Rainha
+void moverRainha(int casa)
+{
+    if (casa > 0)
+    {
+
+        printf("Esquerda (casa %d)\n", casa);
+        moverRainha(casa - 1);
+    }
+}
+
+void moverCavalo() {
+        printf("Movimento do Cavalo:\n");
+
+        for (int vertical = 1; vertical <= 2; vertical++)
+        {
+            printf ("Cima\n"); // sobe duas casas
+        }
+        
+         // Movimento lateral em L 
+         for (int horinzontal = 1; horinzontal <= 2; horinzontal++)
+         {
+           if (horinzontal == 2)  // impede movimento exagerado
+           {
+            break;
+           } else if (horinzontal == 0) 
+           {
+            continue; // ignorará se houver movimento 0
+           }
+           printf("Direita\n");
+         }
+         
+}
+
+    
+        
+int main() {
+
+    printf("Movimento da Torre:\n");
+    moverTorre(5);
+
+    printf("\n");
+
+    printf("Movimento do Bispo:\n");
+    moverBispo(5);
+
+    printf("\n");
+
+    printf("Movimento da Rainha:\n");
+    moverRainha(8);
+
+     printf("\n");
+
+    moverCavalo();
+
+    printf("\nFim dos movimentos!\n");
+
+
+    return 0;
+}
+       
+
+
+
+
+
+
+
+  
+
+
 
    
 
